@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="monstergame"
-run/main_scene="uid://bki5fydv8g8vd"
-config/features=PackedStringArray("4.4", "Forward Plus")
+run/main_scene="res://display.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [input]
