@@ -10,9 +10,20 @@ class Move:
     var type: String
     var contact: bool
 
+    func get_damage_against(user: Monster, enemy: Monster) -> int:
+        var mult := 1.0
+        if type == user.type:
+            mult *= 1.5
+
+        mult *= randf_range(217.0 / 255.0, 1.0)
+
+        return ((((((2 * user.level) / 5) + 2) * power * user.stat_atk / enemy.stat_def) / 50) + 2) * mult
+
 const JSON_MOVES := preload("res://moves.json")
 
 var name := "bulbasaur"
+
+var type := "grass"
 
 var health: int
 
@@ -54,3 +65,6 @@ func get_max_hp() -> int:
 
 func get_hp_percent() -> float:
     return health / float(get_max_hp())
+
+func hurt(amount: int) -> void:
+    health = max(0, health - amount)

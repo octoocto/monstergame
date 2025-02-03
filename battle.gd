@@ -40,9 +40,11 @@ func _physics_process(_delta: float) -> void:
     %LabelLevel.text = str(player.get_current_monster().level)
     %LabelHP.text = str(player.get_current_monster().health)
     %LabelHPTotal.text = str(player.get_current_monster().get_max_hp())
+    %BarHP.value = player.get_current_monster().get_hp_percent()
 
     %LabelEnemyName.text = enemy.get_current_monster().name.to_upper()
     %LabelEnemyLevel.text = str(enemy.get_current_monster().level)
+    %BarEnemyHP.value = enemy.get_current_monster().get_hp_percent()
 
 func update_menu_main() -> void:
     match selected:
@@ -123,6 +125,15 @@ func update_menu_fight() -> void:
         %LabelType.text = ""
         %LabelPPTotal.text = ""
         %LabelPP.text = ""
+
+    if Input.is_action_just_pressed("select"):
+        # do the above move
+        var damage := move.get_damage_against(player.get_current_monster(), enemy.get_current_monster())
+        enemy.get_current_monster().hurt(damage)
+        print("damage for %d" % damage)
+        if enemy.get_current_monster().health == 0:
+            %AnimationPlayer.play("enemy_death")
+
 
 func goto_pkmn() -> void:
     pass
