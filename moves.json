@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Tackle",
+        "description": "A full-body charge attack.",
+        "category": "Physical",
+        "power": 40,
+        "accuracy": 95,
+        "pp": 35,
+        "type": "NORMAL",
+        "contact": true
+    },
+    {
+        "name": "Growl",
+        "description": "Reduces the foe’s ATTACK.",
+        "category": "Status",
+        "power": 0,
+        "accuracy": 100,
+        "pp": 40,
+        "type": "NORMAL",
+        "contact": false
+    }
+]
