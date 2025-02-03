@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://vlf0qboc4y6q"]
+[gd_scene load_steps=28 format=4 uid="uid://vlf0qboc4y6q"]
 
 [ext_resource type="Script" path="res://battle.gd" id="1_7sfm4"]
 [ext_resource type="Texture2D" uid="uid://b86bno1lg0kpt" path="res://assets/gfx/frames/1.png" id="1_oxp8w"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bbw1jf08twnxr" path="res://assets/gfx/battle/hp_exp_bar_border.png" id="7_ol6im"]
 [ext_resource type="Texture2D" uid="uid://bfr3jcf4epsp8" path="res://assets/gfx/font/font_battle_extra.png" id="8_mhv3b"]
 [ext_resource type="FontFile" uid="uid://bkwfpe32wgwwx" path="res://assets/gfx/font/font.png" id="9_lcjiy"]
+[ext_resource type="Texture2D" uid="uid://d0n6cp53akwkk" path="res://assets/gfx/pokemon/bulbasaur/front.png" id="10_d6qiu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i431l"]
 texture = ExtResource("1_oxp8w")
@@ -246,6 +247,56 @@ line_spacing = 8.0
 font = ExtResource("9_lcjiy")
 font_size = 8
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_70p8l"]
+atlas = ExtResource("10_d6qiu")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73b5u"]
+atlas = ExtResource("10_d6qiu")
+region = Rect2(0, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8rr5"]
+atlas = ExtResource("10_d6qiu")
+region = Rect2(0, 80, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5wvy"]
+atlas = ExtResource("10_d6qiu")
+region = Rect2(0, 120, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_env1y"]
+atlas = ExtResource("10_d6qiu")
+region = Rect2(0, 160, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5crsq"]
+atlas = ExtResource("10_d6qiu")
+region = Rect2(0, 200, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15qyj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70p8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73b5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8rr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5wvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_env1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5crsq")
+}],
+"loop": true,
+"name": &"bulbasaur_front",
+"speed": 5.0
+}]
+
 [node name="BattleScreen" type="ColorRect"]
 texture_filter = 1
 custom_minimum_size = Vector2(160, 144)
@@ -296,3 +347,7 @@ offset_right = 40.0
 offset_bottom = 136.0
 text = "text"
 label_settings = SubResource("LabelSettings_ol6im")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_15qyj")
+animation = &"bulbasaur_front"
