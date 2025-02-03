@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://vlf0qboc4y6q"]
+[gd_scene load_steps=21 format=4 uid="uid://vlf0qboc4y6q"]
 
 [ext_resource type="Script" path="res://battle.gd" id="1_7sfm4"]
 [ext_resource type="Texture2D" uid="uid://b86bno1lg0kpt" path="res://assets/gfx/frames/1.png" id="1_oxp8w"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bj66ih84phjqy" path="res://assets/gfx/battle/expbar.png" id="6_lcjiy"]
 [ext_resource type="Texture2D" uid="uid://bbw1jf08twnxr" path="res://assets/gfx/battle/hp_exp_bar_border.png" id="7_ol6im"]
 [ext_resource type="Texture2D" uid="uid://bfr3jcf4epsp8" path="res://assets/gfx/font/font_battle_extra.png" id="8_mhv3b"]
-[ext_resource type="FontFile" uid="uid://bkwfpe32wgwwx" path="res://assets/gfx/font/font.png" id="9_lcjiy"]
+[ext_resource type="LabelSettings" uid="uid://ded2wi8788irx" path="res://font.tres" id="9_l6r27"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i431l"]
 texture = ExtResource("1_oxp8w")
@@ -237,14 +237,13 @@ sources/4 = SubResource("TileSetAtlasSource_elvfr")
 sources/5 = SubResource("TileSetAtlasSource_4s0ev")
 sources/7 = SubResource("TileSetAtlasSource_lcjiy")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xpj6t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fe0gd"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_i431l"]
 atlas = ExtResource("2_7sfm4")
 region = Rect2(104, 48, 8, 8)
-
-[sub_resource type="LabelSettings" id="LabelSettings_ol6im"]
-line_spacing = 8.0
-font = ExtResource("9_lcjiy")
-font_size = 8
 
 [node name="BattleScreen" type="ColorRect"]
 texture_filter = 1
@@ -263,13 +262,93 @@ tile_set = SubResource("TileSet_dw4jg")
 
 [node name="LayerBattle" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
-visible = false
 tile_map_data = PackedByteArray("AAASAAkAAwAAAAAAAAARAAkABQADAAAAAAAQAAkABQADAAAAAAAPAAkABQADAAAAAAAOAAkABQADAAAAAAANAAkABQADAAAAAAAMAAkABQADAAAAAAALAAkABwABAAAAAAAKAAkABwAAAAAAAAADAAIABwABAAAAAAACAAIABwAAAAAAAAAEAAIABwACAAAAAAAFAAIABwACAAAAAAAGAAIABwACAAAAAAAHAAIABwACAAAAAAAIAAIABwACAAAAAAAJAAIABwACAAAAAAAKAAIABwALAAAAAAAGAAEABwAOAAAAAAAOAAgABwAOAAAAAAAOAAoAAQADAAcAAAA=")
 tile_set = SubResource("TileSet_dw4jg")
 
+[node name="LabelHPTotal" type="Label" parent="LayerBattle"]
+unique_name_in_owner = true
+offset_left = 120.0
+offset_top = 80.0
+offset_right = 144.0
+offset_bottom = 88.0
+text = "00"
+label_settings = ExtResource("9_l6r27")
+horizontal_alignment = 2
+
+[node name="LabelHP" type="Label" parent="LayerBattle"]
+unique_name_in_owner = true
+offset_left = 88.0
+offset_top = 80.0
+offset_right = 112.0
+offset_bottom = 88.0
+text = "00"
+label_settings = ExtResource("9_l6r27")
+horizontal_alignment = 2
+
+[node name="LabelName" type="Label" parent="LayerBattle"]
+unique_name_in_owner = true
+offset_left = 80.0
+offset_top = 56.0
+offset_right = 112.0
+offset_bottom = 64.0
+label_settings = ExtResource("9_l6r27")
+
+[node name="LabelLevel" type="Label" parent="LayerBattle"]
+unique_name_in_owner = true
+offset_left = 120.0
+offset_top = 64.0
+offset_right = 152.0
+offset_bottom = 72.0
+label_settings = ExtResource("9_l6r27")
+
+[node name="LabelEnemyLevel2" type="Label" parent="LayerBattle"]
+unique_name_in_owner = true
+offset_left = 56.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 16.0
+label_settings = ExtResource("9_l6r27")
+
+[node name="LabelEnemyName" type="Label" parent="LayerBattle"]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_right = 48.0
+offset_bottom = 8.0
+label_settings = ExtResource("9_l6r27")
+
+[node name="LabelEnemyLevel" type="Label" parent="LayerBattle"]
+unique_name_in_owner = true
+offset_left = 56.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 16.0
+label_settings = ExtResource("9_l6r27")
+
+[node name="BarEnemyHP" type="ProgressBar" parent="LayerBattle"]
+offset_left = 32.0
+offset_top = 19.0
+offset_right = 80.0
+offset_bottom = 21.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_xpj6t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fe0gd")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="BarHP" type="ProgressBar" parent="LayerBattle"]
+offset_left = 96.0
+offset_top = 75.0
+offset_right = 144.0
+offset_bottom = 77.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_xpj6t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fe0gd")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
 [node name="LayerOverlay" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAAAAA8AAAABAAEAAAAAABEAAAAAAAIAAAAAABAAAAABAAEAAAAAAA4AAAABAAEAAAABABEAAAABAAAAAAACABEAAAABAAAAAAADABEAAAABAAAAAAAEABEAAAABAAAAAAAFABEAAAABAAAAAAAGABEAAAABAAAAAAAHABEAAAABAAAAAAAIABEAAAABAAAAAAAJABEAAAABAAAAAAAKABEAAAABAAAAAAALABEAAAABAAAAAAAMABEAAAABAAAAAAANABEAAAABAAAAAAAOABEAAAABAAAAAAAPABEAAAABAAAAAAAQABEAAAABAAAAAAARABEAAAABAAAAAAASABEAAAABAAAAAAATABEAAAABAAIAAAATABAAAAABAAEAAAATAA8AAAABAAEAAAATAA4AAAABAAEAAAASAAwAAAABAAAAAAARAAwAAAABAAAAAAAQAAwAAAABAAAAAAAPAAwAAAABAAAAAAAOAAwAAAABAAAAAAANAAwAAAABAAAAAAAMAAwAAAABAAAAAAALAAwAAAABAAAAAAAKAAwAAAABAAAAAAAJAAwAAAABAAAAAAAIAAwAAAABAAAAAAAHAAwAAAABAAAAAAAGAAwAAAABAAAAAAAFAAwAAAABAAAAAAAEAAwAAAABAAAAAAADAAwAAAABAAAAAAACAAwAAAABAAAAAAABAAwAAAABAAAAAAAAAAwAAAAAAAAAAAATAAwAAAAAAAEAAAATAA0AAAABAAEAAAAAAA0AAAABAAEAAAASAAsABAAHAAAAAAARAAsABAAAAAAAAAAQAAsABAAAAAAAAAAPAAsABAAAAAAAAAAOAAsABAAAAAAAAAANAAsABAAAAAAAAAAMAAsABAAAAAAAAAALAAsABAAAAAAAAAAKAAsABAAAAAAAAAAJAAsAAwADAAAAAAASAAoAAwABAAAAABABAAIAAwABAAAAAAABAAMAAwABAAAAAAABAAQABQABAAAAAAACAAQABQADAAAAAAADAAQABQADAAAAAAAEAAQABQADAAAAAAAFAAQABQADAAAAAAAGAAQABQADAAAAAAAHAAQABQADAAAAAAAIAAQABQADAAAAAAAJAAQABQADAAAAAAAKAAQABQAFAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAA8AAAABAAEAAAAAABEAAAAAAAIAAAAAABAAAAABAAEAAAAAAA4AAAABAAEAAAABABEAAAABAAAAAAACABEAAAABAAAAAAADABEAAAABAAAAAAAEABEAAAABAAAAAAAFABEAAAABAAAAAAAGABEAAAABAAAAAAAHABEAAAABAAAAAAAIABEAAAABAAAAAAAJABEAAAABAAAAAAAKABEAAAABAAAAAAALABEAAAABAAAAAAAMABEAAAABAAAAAAANABEAAAABAAAAAAAOABEAAAABAAAAAAAPABEAAAABAAAAAAAQABEAAAABAAAAAAARABEAAAABAAAAAAASABEAAAABAAAAAAATABEAAAABAAIAAAATABAAAAABAAEAAAATAA8AAAABAAEAAAATAA4AAAABAAEAAAASAAwAAAABAAAAAAARAAwAAAABAAAAAAAQAAwAAAABAAAAAAAPAAwAAAABAAAAAAAOAAwAAAABAAAAAAANAAwAAAABAAAAAAAMAAwAAAABAAAAAAALAAwAAAABAAAAAAAKAAwAAAABAAAAAAAJAAwAAAABAAAAAAAIAAwAAAABAAAAAAAHAAwAAAABAAAAAAAGAAwAAAABAAAAAAAFAAwAAAABAAAAAAAEAAwAAAABAAAAAAADAAwAAAABAAAAAAACAAwAAAABAAAAAAABAAwAAAABAAAAAAAAAAwAAAAAAAAAAAATAAwAAAAAAAEAAAATAA0AAAABAAEAAAAAAA0AAAABAAEAAAASAAsABAAHAAAAAAARAAsABAAAAAAAAAAQAAsABAAAAAAAAAAPAAsABAAAAAAAAAAOAAsABAAAAAAAAAANAAsABAAAAAAAAAAMAAsABAAAAAAAAAALAAsABAAAAAAAAAAKAAsABAAAAAAAAAAJAAsAAwADAAAAAAASAAoAAwABAAAAABABAAIAAwABAAAAAAABAAMABQABAAAAAAACAAMABQADAAAAAAADAAMABQADAAAAAAAEAAMABQADAAAAAAAFAAMABQADAAAAAAAGAAMABQADAAAAAAAHAAMABQADAAAAAAAIAAMABQADAAAAAAAJAAMABQADAAAAAAAKAAMABQAFAAAAAAA=")
 tile_set = SubResource("TileSet_dw4jg")
 
 [node name="LayerMenu" type="TileMapLayer" parent="."]
@@ -283,16 +362,68 @@ visible = false
 tile_map_data = PackedByteArray("AAAEAAwAAAABAAAAAAAEAA4AAAABAAEAAAAEAA0AAAABAAEAAAAEAA8AAAABAAEAAAAEABAAAAABAAEAAAAEABEAAAAAAAIAAAAFABEAAAABAAAAAAAGABEAAAABAAAAAAAHABEAAAABAAAAAAAIABEAAAABAAAAAAAJABEAAAABAAAAAAAKABEAAAABAAAAAAALABEAAAABAAAAAAAMABEAAAABAAAAAAANABEAAAABAAAAAAAOABEAAAABAAAAAAAPABEAAAABAAAAAAAQABEAAAABAAAAAAARABEAAAABAAAAAAASABEAAAABAAAAAAATABEAAAABAAIAAAATABAAAAABAAEAAAATAA8AAAABAAEAAAATAA4AAAABAAEAAAATAA0AAAABAAEAAAATAAwAAAAAAAEAAAASAAwAAAABAAAAAAARAAwAAAABAAAAAAAQAAwAAAABAAAAAAAPAAwAAAABAAAAAAAOAAwAAAABAAAAAAANAAwAAAABAAAAAAAMAAwAAAABAAAAAAALAAwAAAABAAAAAAAKAAwAAAABAAIAAAAJAAwAAAABAAAAAAAIAAwAAAABAAAAAAAHAAwAAAABAAAAAAAGAAwAAAABAAAAAAAFAAwAAAABAAAAAAADAAwAAAABAAAAAAACAAwAAAABAAAAAAABAAwAAAABAAAAAAAAAAwAAAAAAAIAAAAKAAsAAAABAAEAAAAKAAoAAAABAAEAAAAKAAkAAAABAAEAAAAAAAkAAAABAAEAAAAAAAsAAAABAAEAAAAAAAoAAAABAAEAAAACAAoAAQAKAAMAAAADAAoAAQAKAAMAAAAEAAoAAQAKAAMAAAAFAAoAAQAKAAMAAAAGAAoAAQAKAAMAAAAJAAoAAQAKAAMAAAAJAAsAAQAKAAMAAAAIAAsAAQAKAAMAAAAHAAsAAQADAAcAAAAGAAsAAQAKAAMAAAAFAAsAAQAKAAMAAAAEAAsAAQAKAAMAAAADAAsAAQAKAAMAAAACAAsAAQAKAAMAAAABAAsAAQAKAAMAAAAFAA0AAQAKAAMAAAAGAA0AAQAKAAMAAAAHAA0AAQAKAAMAAAAIAA0AAQAKAAMAAAAJAA0AAQAKAAMAAAAKAA0AAQAKAAMAAAALAA0AAQAKAAMAAAAMAA0AAQAKAAMAAAANAA0AAQAKAAMAAAAOAA0AAQAKAAMAAAAPAA0AAQAKAAMAAAAQAA0AAQAKAAMAAAARAA0AAQAKAAMAAAASAA0AAQAKAAMAAAASAA4AAQAKAAMAAAARAA4AAQAKAAMAAAAQAA4AAQAKAAMAAAAPAA4AAQAKAAMAAAAOAA4AAQAKAAMAAAANAA4AAQAKAAMAAAAMAA4AAQAKAAMAAAALAA4AAQAKAAMAAAAKAA4AAQAKAAMAAAAJAA4AAQAKAAMAAAAIAA4AAQAKAAMAAAAHAA4AAQAKAAMAAAAGAA4AAQAKAAMAAAAFAA4AAQAKAAMAAAAFAA8AAQAKAAMAAAAGAA8AAQAKAAMAAAAHAA8AAQAKAAMAAAAIAA8AAQAKAAMAAAAJAA8AAQAKAAMAAAAKAA8AAQAKAAMAAAALAA8AAQAKAAMAAAAMAA8AAQAKAAMAAAANAA8AAQAKAAMAAAAOAA8AAQAKAAMAAAAPAA8AAQAKAAMAAAAQAA8AAQAKAAMAAAARAA8AAQAKAAMAAAASAA8AAQAKAAMAAAASABAAAQAKAAMAAAARABAAAQAKAAMAAAAQABAAAQAKAAMAAAAPABAAAQAKAAMAAAAOABAAAQAKAAMAAAANABAAAQAKAAMAAAAMABAAAQAKAAMAAAALABAAAQAKAAMAAAAKABAAAQAKAAMAAAAJABAAAQAKAAMAAAAIABAAAQAKAAMAAAAHABAAAQAKAAMAAAAGABAAAQAKAAMAAAAFABAAAQAKAAMAAAAAAAgAAAAAAAAAAAAKAAgAAAAAAAEAAAAJAAgAAAABAAAAAAAIAAgAAAABAAAAAAAHAAgAAAABAAAAAAAGAAgAAAABAAAAAAAFAAgAAAABAAAAAAAEAAgAAAABAAAAAAADAAgAAAABAAAAAAACAAgAAAABAAAAAAABAAgAAAABAAAAAAABAAkAAQADAAEAAAACAAkAAQAIAAEAAAADAAkAAQAPAAAAAAAEAAkAAQAEAAAAAAAFAAkAAQADAAcAAAA=")
 tile_set = SubResource("TileSet_dw4jg")
 
+[node name="LabelMove0" type="Label" parent="LayerFight"]
+unique_name_in_owner = true
+offset_left = 48.0
+offset_top = 104.0
+offset_right = 80.0
+offset_bottom = 112.0
+label_settings = ExtResource("9_l6r27")
+
+[node name="LabelMove1" type="Label" parent="LayerFight"]
+unique_name_in_owner = true
+offset_left = 48.0
+offset_top = 112.0
+offset_right = 80.0
+offset_bottom = 120.0
+label_settings = ExtResource("9_l6r27")
+
+[node name="LabelMove2" type="Label" parent="LayerFight"]
+unique_name_in_owner = true
+offset_left = 48.0
+offset_top = 120.0
+offset_right = 80.0
+offset_bottom = 128.0
+label_settings = ExtResource("9_l6r27")
+
+[node name="LabelMove3" type="Label" parent="LayerFight"]
+unique_name_in_owner = true
+offset_left = 48.0
+offset_top = 128.0
+offset_right = 80.0
+offset_bottom = 136.0
+label_settings = ExtResource("9_l6r27")
+
+[node name="LabelType" type="Label" parent="LayerFight"]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 80.0
+offset_right = 80.0
+offset_bottom = 88.0
+text = "NORMAL"
+label_settings = ExtResource("9_l6r27")
+
+[node name="LabelPPTotal" type="Label" parent="LayerFight"]
+unique_name_in_owner = true
+offset_left = 64.0
+offset_top = 88.0
+offset_right = 80.0
+offset_bottom = 96.0
+text = "00"
+label_settings = ExtResource("9_l6r27")
+
+[node name="LabelPP" type="Label" parent="LayerFight"]
+unique_name_in_owner = true
+offset_left = 40.0
+offset_top = 88.0
+offset_right = 56.0
+offset_bottom = 96.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "00"
+label_settings = ExtResource("9_l6r27")
+
 [node name="SpriteArrow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(76, 116)
 texture = SubResource("AtlasTexture_i431l")
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-offset_left = 8.0
-offset_top = 112.0
-offset_right = 40.0
-offset_bottom = 136.0
-text = "text"
-label_settings = SubResource("LabelSettings_ol6im")

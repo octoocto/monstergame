@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ded2wi8788irx"]
+
+[ext_resource type="FontFile" uid="uid://bkwfpe32wgwwx" path="res://assets/gfx/font/font.png" id="1_pwvqk"]
+
+[resource]
+line_spacing = 8.0
+font = ExtResource("1_pwvqk")
+font_size = 8
